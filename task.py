@@ -1,6 +1,6 @@
 import threading
 import datetime
-
+import pyautogui
 from	 pynput.mouse import Button
 from pynput.keyboard import Key
 import pynput.mouse    as ms
@@ -9,8 +9,8 @@ import time
 import random
 import os
 import sys
-sys.stdout = open(os.devnull, "w")
-sys.stderr = open(os.devnull, "w")
+#sys.stdout = open(os.devnull, "w")
+#sys.stderr = open(os.devnull, "w")
 runWhile=False
 keyboard = kb.Controller()
 x = 1024
@@ -62,14 +62,21 @@ def previousView():
 	time.sleep(0.5)
 	keyboard.release(Key.ctrl)
 	time.sleep(0.5)
+
 def moveMouse():
 	random_x = random.randint(1, x)
 	random_y = random.randint(1, y)
-	mouse.position = (random_x , random_y)
-	mouse.move(20, -13)
+	moveMouseTo(random_x , random_y)
 	step = random.randint(-10, 10)
 	mouse.scroll(0, step)
 	
+def moveMouseTo(x,y,t=random.random()):
+	pyautogui.moveTo(x, y, t, pyautogui.easeInQuad)     # start slow, end fast
+	pyautogui.moveTo(x, y, t, pyautogui.easeOutQuad)    # start fast, end slow
+	pyautogui.moveTo(x, y, t, pyautogui.easeInOutQuad)  # start and end fast, slow in middle
+	pyautogui.moveTo(x, y, t, pyautogui.easeInBounce)   # bounce at the end
+	pyautogui.moveTo(x, y, t, pyautogui.easeInElastic)
+
 def exec():
 	while runWhile:
 		global count
