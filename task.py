@@ -9,8 +9,8 @@ import time
 import random
 import os
 import sys
-#sys.stdout = open(os.devnull, "w")
-#sys.stderr = open(os.devnull, "w")
+sys.stdout = open(os.devnull, "w")
+sys.stderr = open(os.devnull, "w")
 runWhile=False
 keyboard = kb.Controller()
 x = 1024
