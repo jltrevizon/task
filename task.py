@@ -9,12 +9,13 @@ import time
 import random
 import os
 import sys
-sys.stdout = open(os.devnull, "w")
-sys.stderr = open(os.devnull, "w")
+#sys.stdout = open(os.devnull, "w")
+#sys.stderr = open(os.devnull, "w")
 runWhile=False
 keyboard = kb.Controller()
 x = 1024
 y = 800
+count=0
 mouse = ms.Controller()
 
 def keyPress(key, t = 1):
@@ -47,7 +48,8 @@ def moveMouse():
 	
 def exec():
 	while runWhile:
-		print('each')
+		global count
+		count=count + 1
 		keyPress(Key.right)
 		moveMouse()		
 		keyPress(Key.down)
@@ -56,7 +58,8 @@ def exec():
 		moveMouse()
 		keyPress(Key.up)
 		moveMouse()
-		altTab()
+		if count%3==0:
+			altTab()
 		time.sleep(1)
 
 def on_press(key):
