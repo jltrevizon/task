@@ -26,7 +26,11 @@ def altTab():
 	sys=os.name
 	if sys=='nt':
 		print ("Is Win ")
-		keyboard.press(Key.tab) #Tab
+		keyboard.press(Key.alt)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
 		keyboard.release(Key.alt)
 	else:
 		print ("ALT+TAB")
