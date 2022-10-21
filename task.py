@@ -9,8 +9,8 @@ import time
 import random
 import os
 import sys
-sys.stdout = open(os.devnull, "w")
-sys.stderr = open(os.devnull, "w")
+#sys.stdout = open(os.devnull, "w")
+#sys.stderr = open(os.devnull, "w")
 runWhile=False
 keyboard = kb.Controller()
 x = 1024
@@ -18,30 +18,50 @@ y = 800
 count=0
 mouse = ms.Controller()
 
-def keyPress(key, t = 1):
+def keyPress(key, t = 0.5):
 	keyboard.press(key)
+	time.sleep(t)
 	keyboard.release(key)
 	time.sleep(t)
 
 def altTab():
 	sys=os.name
+	keyboard.press(Key.alt)
+	time.sleep(0.5)
+	keyboard.press(Key.tab)
+	time.sleep(0.5)
 	if sys=='nt':
 		print ("Is Win ")
-		keyboard.press(Key.alt)
-		keyboard.press(Key.tab)
 		keyboard.release(Key.tab)
+		time.sleep(0.5)
 		keyboard.press(Key.tab)
-		keyboard.release(Key.tab)
-		keyboard.release(Key.alt)
+		time.sleep(0.5)
 	else:
 		print ("ALT+TAB")
-		keyboard.press(Key.alt)
-		keyboard.press(Key.tab)
-		keyboard.release(Key.tab)
-		keyboard.release(Key.alt)
-	time.sleep(1)
+	keyboard.release(Key.tab)
+	time.sleep(0.5)
+	keyboard.release(Key.alt)
+	time.sleep(0.5)
 
+def nextView():
+	keyboard.press(Key.ctrl)
+	time.sleep(0.5)
+	keyboard.press(Key.page_down )
+	time.sleep(0.5)
+	keyboard.release(Key.page_down)
+	time.sleep(0.5)
+	keyboard.release(Key.ctrl)
+	time.sleep(0.5)
 
+def previousView():
+	keyboard.press(Key.ctrl)
+	time.sleep(0.5)
+	keyboard.press(Key.page_up)
+	time.sleep(0.5)
+	keyboard.release(Key.page_up)
+	time.sleep(0.5)
+	keyboard.release(Key.ctrl)
+	time.sleep(0.5)
 def moveMouse():
 	random_x = random.randint(1, x)
 	random_y = random.randint(1, y)
@@ -62,8 +82,10 @@ def exec():
 		moveMouse()
 		keyPress(Key.up)
 		moveMouse()
+		nextView()
 		if count%3==0:
 			altTab()
+			previousView()
 		time.sleep(1)
 
 def on_press(key):
