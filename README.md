@@ -1,11 +1,14 @@
 # task
 Job for me
 Cheat To Timedoctor2
-## instalar dependencias
+## install dependencies
 ```bash
     pip install -r requirements.txt
 ```
-## Ejecutar 
+## generate executable for win 
 ```bash
-    python task.py
-```
+    pip install auto-py-to-exe
+    auto-py-to-exe
+``` 
+## settings for auto-py-to-exe
+[[https://github.com/jltrevizon/task/blob/main/auto-py-to-exe-settings.png|alt=octocat]]
