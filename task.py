@@ -27,7 +27,11 @@ def altTab():
 	sys=os.name
 	if sys=='nt':
 		print ("Is Win ")
-		keyboard.press(Key.tab) #Tab
+		keyboard.press(Key.alt)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
 		keyboard.release(Key.alt)
 	else:
 		print ("ALT+TAB")
@@ -79,13 +83,8 @@ def on_press(key):
         print("TASK STOPPED", datetime.datetime.now(), '\n')
         
     if key == Key.f10:
-        sys=os.name
-        if sys=='nt':
-           os.system('taskkill /IM task.exe /F')
-        else:
-           os.system('killall -9 python')
         print("listener TERMINATED", datetime.datetime.now(), '\n')
-        return False
+        sys.exit() 
 
 #--- main ---
 print ("keypress f8 to start")
