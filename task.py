@@ -74,14 +74,15 @@ def exec():
 	while runWhile:
 		global count
 		count=count + 1
-		keyPress(Key.right)
-		moveMouse()		
-		keyPress(Key.down)
-		moveMouse()
-		keyPress(Key.left)
-		moveMouse()
-		keyPress(Key.up)
-		moveMouse()
+		for j in range(1, random.randint(1, 10)):
+			keyPress(Key.right)
+			moveMouse()		
+			keyPress(Key.down)
+			moveMouse()
+			keyPress(Key.left)
+			moveMouse()
+			keyPress(Key.up)
+			moveMouse()
 		nextView()
 		if count%3==0:
 			altTab()
