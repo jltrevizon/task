@@ -1,5 +1,11 @@
 # task
-job for me
+Job for me
+Cheat To Timedoctor2
 ## instalar dependencias
-pip install pynput
-pip install pykeyboard
+```bash
+    pip install -r requirements.txt
+```
+## Ejecutar 
+```bash
+    python task.py
+```

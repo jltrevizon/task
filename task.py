@@ -1,10 +1,7 @@
-# instalar :  
-#>pip install pynput
-#>pip install pykeyboard
-# Ejecutar 
-#>python task.py
+import threading
+import datetime
 
-from pynput.mouse import Button
+from	 pynput.mouse import Button
 from pynput.keyboard import Key
 import pynput.mouse    as ms
 import pynput.keyboard as kb
@@ -14,88 +11,80 @@ import os
 import sys
 sys.stdout = open(os.devnull, "w")
 sys.stderr = open(os.devnull, "w")
-						 
+runWhile=False
 keyboard = kb.Controller()
 x = 1024
 y = 800
-print("Width =", x)
-print("Height =", y)
 mouse = ms.Controller()
-print ("Init position: " + str(mouse.position))
-while 0==0:
-	for i in range(1,10):
-		keyboard.press(Key.right)
-		keyboard.release(Key.right)
-		print ("Tecla right")
-		time.sleep(0.1)
-		keyboard.press(Key.down)
-		keyboard.release(Key.down)
-		print ("Tecla down")
-		time.sleep(0.1)
-		keyboard.press(Key.left)
-		keyboard.release(Key.left)
-		print ("Tecla left")
-		time.sleep(0.1)
-		keyboard.press(Key.up)
-		keyboard.release(Key.up)
-		print ("Tecla up")
-		time.sleep(0.1)
-		for j in range(1,10):
-			print ("Current position: " + str(i) + "," +str(j)+ " = " + str(mouse.position))
-			random_x = random.randint(1, x)
-			random_y = random.randint(1, y)
-			mouse.position = (random_x , random_y)
-			mouse.move(20, -13)
-			print ("Final position: " + str(mouse.position))
-			time.sleep(1)
-			step = random.randint(-10, 10)
-			mouse.scroll(0, step)
-			time.sleep(1)
-		print ("ALT+TAB")
-		keyboard.press(Key.alt) #Alt
-		time.sleep(1)
+
+def keyPress(key, t = 1):
+	keyboard.press(key)
+	keyboard.release(key)
+	time.sleep(t)
+
+def altTab():
+	sys=os.name
+	if sys=='nt':
+		print ("Is Win ")
 		keyboard.press(Key.tab) #Tab
+		keyboard.release(Key.alt)
+	else:
+		print ("ALT+TAB")
+		keyboard.press(Key.alt)
+		keyboard.press(Key.tab)
+		keyboard.release(Key.tab)
+		keyboard.release(Key.alt)
+	time.sleep(1)
+
+
+def moveMouse():
+	random_x = random.randint(1, x)
+	random_y = random.randint(1, y)
+	mouse.position = (random_x , random_y)
+	mouse.move(20, -13)
+	step = random.randint(-10, 10)
+	mouse.scroll(0, step)
+	
+def exec():
+	while runWhile:
+		print('each')
+		keyPress(Key.right)
+		moveMouse()		
+		keyPress(Key.down)
+		moveMouse()
+		keyPress(Key.left)
+		moveMouse()
+		keyPress(Key.up)
+		moveMouse()
+		altTab()
 		time.sleep(1)
-		keyboard.release(Key.tab) #~Tab
-		time.sleep(0.5)	
-		if os.name == 'nt':
-			print ("Is Win ")
-			keyboard.press(Key.tab) #Tab
-			time.sleep(1)
-			keyboard.release(Key.tab) #~Tab
-			time.sleep(0.5)		
-		keyboard.release(Key.alt) #~Alt
-	keyboard.press(Key.right)
-	keyboard.release(Key.right)
-	print ("Tecla right")
-	time.sleep(0.1)
-	keyboard.press(Key.down)
-	keyboard.release(Key.down)
-	print ("Tecla down")
-	time.sleep(0.1)
-	keyboard.press(Key.left)
-	keyboard.release(Key.left)
-	print ("Tecla left")
-	time.sleep(0.1)
-	keyboard.press(Key.up)
-	keyboard.release(Key.up)
-	print ("Tecla up")
-	print ("Duerme 3 minutos...")
-	time.sleep(180)		
-		
-# Click the left button
-#mouse.click(Button.left, 1)
-# Click the right button
-#mouse.click(Button.right, 1)
-# Click the middle button
-#mouse.click(Button.middle, 1)
-# Double click the left button
-#mouse.click(Button.left, 2)
-# Click the left button ten times
-#mouse.click(Button.left, 10)
-#mouse.press(Button.left)
-#mouse.release(Button.left)
-# Scroll up two steps
-#mouse.scroll(0, 2)
-# Scroll right five steps
-#mouse.scroll(5, 0)
+
+def on_press(key):
+    global runWhile
+    if runWhile:
+        # print(key)
+        print ("keypress f9 to puse or f10 to terminate")
+    else:
+        print ("keypress f8 to start")
+    if key == Key.f8 and runWhile==False:
+        runWhile = True
+        thread = threading.Thread(target=exec)
+        thread.start()
+
+    if key == Key.f9 and runWhile==True:
+        runWhile = False
+        print("TASK STOPPED", datetime.datetime.now(), '\n')
+        
+    if key == Key.f10:
+        sys=os.name
+        if sys=='nt':
+           os.system('taskkill /IM task.exe /F')
+        else:
+           os.system('killall -9 python')
+        print("listener TERMINATED", datetime.datetime.now(), '\n')
+        return False
+
+#--- main ---
+print ("keypress f8 to start")
+with kb.Listener(on_press=on_press) as listener:
+    listener.join()
