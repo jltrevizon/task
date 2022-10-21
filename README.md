@@ -11,4 +11,4 @@ Cheat To Timedoctor2
     auto-py-to-exe
 ``` 
 ## settings for auto-py-to-exe
-[[https://github.com/jltrevizon/task/blob/main/auto-py-to-exe-settings.png|alt=octocat]]
+![Image text](https://github.com/jltrevizon/task/blob/main/auto-py-to-exe-settings.png)
