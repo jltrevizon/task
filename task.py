@@ -92,7 +92,7 @@ def exec():
 			moveMouse()
 			keyPress(Key.up)
 			moveMouse()
-			for k in range(1, random.randint(1, 10)):
+			for k in range(1, random.randint(1, 5)):
 				keyPress(Key.page_up,0)
 				if k%3==0:
 					keyPress(Key.page_down,0)
