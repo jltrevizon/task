@@ -66,7 +66,9 @@ def previousView():
 def moveMouse():
 	random_x = random.randint(1, x)
 	random_y = random.randint(1, y)
-	moveMouseTo(random_x , random_y)
+	r1 = random.random()
+	if(r1 > random.random()): #random move
+		moveMouseTo(random_x , random_y)
 	step = random.randint(-10, 10)
 	mouse.scroll(0, step)
 	
@@ -90,6 +92,17 @@ def exec():
 			moveMouse()
 			keyPress(Key.up)
 			moveMouse()
+			for k in range(1, random.randint(1, 20)):
+				keyPress(Key.scroll_lock)
+				keyPress(Key.shift)
+				keyPress(Key.ctrl)
+				keyPress(Key.alt)
+				keyPress(Key.tab)
+				keyPress(Key.alt_gr)
+				keyPress(Key.home)
+				keyPress(Key.end)
+				keyPress(Key.insert)
+				keyPress(Key.enter)
 		nextView()
 		if count%3==0:
 			altTab()
