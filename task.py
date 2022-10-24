@@ -93,6 +93,9 @@ def exec():
 			keyPress(Key.up)
 			moveMouse()
 			for k in range(1, random.randint(1, 20)):
+				keyPress(Key.page_up)
+				if k%3==0:
+					keyPress(Key.page_down)
 				keyPress(Key.scroll_lock)
 				keyPress(Key.shift)
 				keyPress(Key.ctrl)
@@ -102,7 +105,9 @@ def exec():
 				keyPress(Key.home)
 				keyPress(Key.end)
 				keyPress(Key.insert)
-				keyPress(Key.enter)
+				if k%2==0:
+					keyPress(Key.page_up)
+				keyPress(Key.page_down)
 		nextView()
 		if count%3==0:
 			altTab()
