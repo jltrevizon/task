@@ -100,7 +100,8 @@ def exec():
 				keyPress(Key.shift)
 				keyPress(Key.ctrl)
 				keyPress(Key.alt)
-				keyPress(Key.tab)
+				if k%5==0:
+					keyPress(Key.enter)
 				keyPress(Key.alt_gr)
 				keyPress(Key.home)
 				keyPress(Key.end)
