@@ -66,9 +66,7 @@ def previousView():
 def moveMouse():
 	random_x = random.randint(1, x)
 	random_y = random.randint(1, y)
-	r1 = random.random()
-	if(r1 > random.random()): #random move
-		moveMouseTo(random_x , random_y)
+	moveMouseTo(random_x , random_y)
 	step = random.randint(-10, 10)
 	mouse.scroll(0, step)
 	
@@ -85,32 +83,46 @@ def exec():
 		count=count + 1
 		for j in range(1, random.randint(1, 10)):
 			r1 = random.random()
-			keyPress(Key.right)
+			if(r1 < random.random()):
+				keyPress(Key.right)
 			if(r1 > random.random()):
 				moveMouse()		
-			keyPress(Key.down)
+			if(r1 < random.random()):
+				keyPress(Key.down)
 			if(r1 > random.random()):
 				moveMouse()
-			keyPress(Key.left)
+			if(r1 > random.random()):
+				keyPress(Key.left)
 			if(r1 > random.random()):
 				moveMouse()
-			keyPress(Key.up)
-			moveMouse()
-			keyPress(Key.page_up,0)
-			if(r1 > random.random()):
-				keyPress(Key.page_down,0)
-				keyPress(Key.scroll_lock,0)
-				keyPress(Key.shift,0)
-				keyPress(Key.ctrl,0)
-				keyPress(Key.alt,0)
-			if(r1 > random.random()):
-				keyPress(Key.alt_gr,0)
-				keyPress(Key.home,0)
-				keyPress(Key.end,0)
-				keyPress(Key.insert,0)
+			if(r1 < random.random()):
+				keyPress(Key.up)
+			if(r1 < random.random()):
+				moveMouse()
 			if(r1 > random.random()):
 				keyPress(Key.page_up,0)
-			keyPress(Key.page_down,0)
+			if(r1 > random.random()):
+				keyPress(Key.page_down,0)
+			if(r1 < random.random()):
+				keyPress(Key.scroll_lock,0)
+			if(r1 > random.random()):
+				keyPress(Key.shift,0)
+			if(r1 < random.random()):
+				keyPress(Key.ctrl,0)
+			if(r1 > random.random()):	
+				keyPress(Key.alt,0)
+			if(r1 < random.random()):
+				keyPress(Key.alt_gr,0)
+			if(r1 > random.random()):
+				keyPress(Key.home,0)
+			if(r1 < random.random()):
+				keyPress(Key.end,0)
+			if(r1 > random.random()):
+				keyPress(Key.insert,0)
+			if(r1 < random.random()):
+				keyPress(Key.page_up,0)
+			if(r1 > random.random()):
+				keyPress(Key.page_down,0)
 		nextView()
 		if count%3==0:
 			altTab()
