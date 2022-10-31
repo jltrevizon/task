@@ -1,6 +1,5 @@
 # task
 Job for me
-Cheat To Timedoctor2
 ## install dependencies
 ```bash
     pip install -r requirements.txt
