@@ -13,8 +13,9 @@ sys.stdout = open(os.devnull, "w")
 sys.stderr = open(os.devnull, "w")
 runWhile=False
 keyboard = kb.Controller()
-x = 1024
-y = 800
+wh = pyautogui.size() 
+x = wh.width
+y = wh.height
 count=0
 mouse = ms.Controller()
 
@@ -81,48 +82,31 @@ def exec():
 	while runWhile:
 		global count
 		count=count + 1
-		for j in range(1, random.randint(1, 10)):
-			r1 = random.random()
-			if(r1 < random.random()):
-				keyPress(Key.right)
-			if(r1 > random.random()):
-				moveMouse()		
-			if(r1 < random.random()):
-				keyPress(Key.down)
-			if(r1 > random.random()):
-				moveMouse()
-			if(r1 > random.random()):
-				keyPress(Key.left)
-			if(r1 > random.random()):
-				moveMouse()
-			if(r1 < random.random()):
-				keyPress(Key.up)
-			if(r1 < random.random()):
-				moveMouse()
-			if(r1 > random.random()):
-				keyPress(Key.page_up,0)
-			if(r1 > random.random()):
-				keyPress(Key.page_down,0)
-			if(r1 < random.random()):
-				keyPress(Key.scroll_lock,0)
-			if(r1 > random.random()):
-				keyPress(Key.shift,0)
-			if(r1 < random.random()):
-				keyPress(Key.ctrl,0)
-			if(r1 > random.random()):	
-				keyPress(Key.alt,0)
-			if(r1 < random.random()):
-				keyPress(Key.alt_gr,0)
-			if(r1 > random.random()):
-				keyPress(Key.home,0)
-			if(r1 < random.random()):
-				keyPress(Key.end,0)
-			if(r1 > random.random()):
-				keyPress(Key.insert,0)
-			if(r1 < random.random()):
-				keyPress(Key.page_up,0)
-			if(r1 > random.random()):
-				keyPress(Key.page_down,0)
+		r1 = random.random()
+		if(r1 < random.random()):
+			for j in range(1, random.randint(1, 10)):
+					keyPress(Key.right)
+					moveMouse()		
+					keyPress(Key.down)
+					moveMouse()
+					keyPress(Key.left)
+					moveMouse()
+					keyPress(Key.up)
+					moveMouse()
+		if (random.random()>random.random()):
+			keyPress(Key.page_up,0)
+			keyPress(Key.page_down,0)
+			keyPress(Key.scroll_lock,0)
+			keyPress(Key.shift,0)
+			keyPress(Key.ctrl,0)
+			keyPress(Key.alt,0)
+		if (random.random()<random.random()):
+			keyPress(Key.alt_gr,0)
+			keyPress(Key.home,0)
+			keyPress(Key.end,0)
+			keyPress(Key.insert,0)
+			keyPress(Key.page_up,0)
+			keyPress(Key.page_down,0)
 		nextView()
 		if count%3==0:
 			altTab()
