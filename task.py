@@ -83,16 +83,16 @@ def exec():
 		global count
 		count=count + 1
 		r1 = random.random()
-		if(r1 < random.random()):
-			for j in range(1, random.randint(1, 10)):
-					keyPress(Key.right)
-					moveMouse()		
-					keyPress(Key.down)
-					moveMouse()
-					keyPress(Key.left)
-					moveMouse()
-					keyPress(Key.up)
-					moveMouse()
+		for j in range(1, random.randint(1, 10)):
+			if (r1> random.random()):
+				keyPress(Key.right)
+				moveMouse()		
+				keyPress(Key.down)
+				moveMouse()
+				keyPress(Key.left)
+				moveMouse()
+				keyPress(Key.up)
+				moveMouse()
 		if (random.random()>random.random()):
 			keyPress(Key.page_up,0)
 			keyPress(Key.page_down,0)
